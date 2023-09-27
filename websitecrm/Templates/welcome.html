@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>  hi my name is {{name}}  </h1>
+    {% if  name == "D"  %}
+    <h1 style="color: blue;" >  hi my name is {{name}}  </h1>
+    {% else %}
+    <h1 style="color: red;" >  hi my name is {{name}}  </h1>
+    {% endif %}
 </body>
 </html>
