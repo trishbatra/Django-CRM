@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+    <a class="navbar-brand" href="/">Django Crm</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% if url == 'http://localhost:8000/' and user.is_authenticated == False %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/signup">Signup <a>
+          </li>
+          {% elif user.is_authenticated and url ==  'http://localhost:8000/'  %}
+            <li class="nav-item active">
+              <a class="nav-link" href="add/">add record <a>  
+            </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="lgout">Logout <a>  
+              </li>
+        {% else   %}
+            <li class="nav-item active">
+            <a class="nav-link" href="/">Login <a>
+            </li>
+          {% endif %}
+      </ul>
+      
+    </div>
+  </nav>

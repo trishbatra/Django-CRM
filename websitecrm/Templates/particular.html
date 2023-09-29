@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+
+{% block mystuff %}
+<div class="card m-5">
+    <div class="card-header p-3"><strong>
+          {{ r.first_name }} 
+          {{r.last_name }}</strong>
+    </div>
+    <div class="card-body">
+  <p class="card-text">
+  <strong>Email: </strong>{{ r.email }}</p>
+  
+  <p class="card-text">
+  <strong>Phone: </strong>{{ r.phone }}
+  </p>
+  
+  <p class="card-text">
+  <strong>City: </strong>{{ r.city }}</p>
+  
+  <p class="card-text">
+  <strong>State: </strong>{{ r.state }}</p>
+  
+  <p class="card-text">
+  <strong>Zipcode: </strong>{{ r.zipCode }}</p>
+  
+  <p class="card-text">
+  <strong>Create At: </strong>{{ r.createdAt}}</p>
+  
+  <p class="card-text">
+  <strong>ID: </strong>{{ r.id }}</p>
+      
+      
+    </div>
+  </div>
+  
+  <br/><br/>
+  <a href="/" class="btn btn-secondary ml-3">Back</a>
+  
+  <a href="/delete/{{r.id}}" class="btn btn-danger ml-3">Delete</a>
+  
+  <a href="/update/{{r.id}}" class="btn btn-secondary ml-3">Update Record</a>
+{% endblock  %}

@@ -1,15 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if  name == "D"  %}
-    <h1 style="color: blue;" >  hi my name is {{name}}  </h1>
-    {% else %}
-    <h1 style="color: red;" >  hi my name is {{name}}  </h1>
+{% extends "base.html" %}
+
+{% block mystuff %}
+<div class="col-md-6 offset-md-3 text-capitalize">
+  {% if user.is_authenticated == False %}
+  <h1  class="mt-4" >login</h1>
+  {% endif %}
+    {% if user.is_authenticated %}
+      <h1>hello there {{user.username}} jai shree radhe</h1>
+      <p class="text-capitalize fs-5">user records are:</p>
+      <table class="table table-striped ">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">City</th>
+            <th scope="col">Zip</th>
+            <th scope="col">Date Ceated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            {% for r in recrds  %}
+            <th scope="row"> <a href="/doc?id={{r.id}}"> {{forloop.counter}} </a> </th>
+            <td>{{r.first_name }} {{  r.last_name }}</td>
+            <td>{{r.email}}</td>
+            <td>{{r.phone}}</td>
+            <td>{{r.city}}</td>
+            <td>{{r.zipCode}}</td>
+            <td class="col-lg-4" >{{r.createdAt}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}   
+    {% if messages %}
+      {% for m in messages  %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{m}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+     {% endfor %}
+      {% endif %}
+    <form action="login/" method="POST">
+
+        {% csrf_token %}
+        <form>
+            <div class="form-group p-3">
+              <label for="username" class="p-2" >Username</label>
+              <input type="text"  class="form-control p-3" name="username" placeholder="Enter a username......" required>
+            </div>
+            <div class="form-group p-3">
+              <label for="pass" class="p-2" >Password</label>
+              <input type="password" class="form-control p-3" name="pass" required placeholder="Password....................">
+            </div>
+            <p class="mx-4" >  New User? <a href="/signup"> click here to sigup </a> </p>
+            <button type="submit" class="btn btn-secondary my-4">Login</button>
+          </form>
+
+    </form>
     {% endif %}
-</body>
-</html>
+  </div>
+
+{% endblock  %}

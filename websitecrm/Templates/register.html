@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block mystuff %}
+    <div class="col-md-6 offset-md-3">
+    <h1 class="p-2"> Register  </h1>
+    <br>
+    <form action="/signup/" method="post" class="p-1">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          Your Form Has Errors
+          {% for field in form %}
+              {% if field.errors %}
+                  {{ field.errors }}
+              {% endif %}
+          {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+        {{form.as_p}}
+        <br>
+        <p class="mx-4" >  Already have an account? <a href="/"> click here to login </a> </p>
+        <button type="submit" class="btn btn-secondary my-4">signup</button>
+    </form>
+
+    </div>
+
+{% endblock  %}
